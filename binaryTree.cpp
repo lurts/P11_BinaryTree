@@ -22,7 +22,8 @@ binaryTree::binaryTree(float w, unsigned z) {
 }
 
 binaryTree::~binaryTree() {
-
+    delete left;
+    delete right;
 }
 
 
