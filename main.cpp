@@ -6,10 +6,119 @@
 //-
 
 #include <iostream>
+#include <vector>
 #include "binaryTree.h"
 
 
+bool eval(std::vector<float> elements, float target, int expect) {
+    //neuen Baum anlegen
+    binaryTree *bT;
+    bT = new binaryTree(0);
+
+    //Elemente am Baum anhängen
+    for (float f : elements) {
+        bT->insert(f);
+    }
+
+    //Element im Baum finden und Zähler abfragen
+    binaryTree *foundElement = bT->seek(target);
+    int foundValue = foundElement->getCount();
+
+    bool verdict = foundValue == expect;
+
+    std::cout << "Expected Value: " << expect << " Function returned: " << foundValue << "\n";
+
+    if (verdict == true)
+        std::cout << "OK\n\n";
+    else
+        std::cout << "NOK :c\n\n";
+
+    delete bT;
+
+    return verdict;
+}
+
+
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+
+    std::vector<float> elements;
+    float target;
+    int expect;
+
+    int counter = 0;
+    int tests = 1;
+
+    //Test 1
+    std::cout << "Running Test " << tests << "\n";
+
+    elements = {5.0, -2.4, 10.0, 60.3, 10.1, 10,0};
+    target = 10.0;
+    expect = 2;
+
+    if(eval(elements, target, expect))
+        counter++;
+
+    tests++;
+
+    //Test 2
+    std::cout << "Running Test " << tests << "\n";
+
+    elements = {3.14, 1.618, 2.718, 3.14159, 1.414};
+    target = 3.14;
+    expect = 1;
+
+    if(eval(elements, target, expect))
+        counter++;
+
+    tests++;
+
+    //Test 3
+    std::cout << "Running Test " << tests << "\n";
+
+    elements = {10.5, 20.75, 15.25, 10.5, 10.5};
+    target = 10.5;
+    expect = 3;
+
+    if(eval(elements, target, expect))
+        counter++;
+
+    tests++;
+
+    //Test 4
+    std::cout << "Running Test " << tests << "\n";
+
+    elements = {100.0, 50.0, 25.0, 75.0, 150.0};
+    target = 75.0;
+    expect = 1;
+
+    if(eval(elements, target, expect))
+        counter++;
+
+    tests++;
+
+    //Test 5
+    std::cout << "Running Test " << tests << "\n";
+
+    elements = {100.0, 50.0, 25.0, 75.0, 150.0};
+    target = -10.0;
+    expect = 0;
+
+    if(eval(elements, target, expect))
+        counter++;
+
+    tests++;
+
+    //Test 6
+    std::cout << "Running Test " << tests << "\n";
+
+    elements = {100.0, 50.0, 25.0, 75.0, 150.0, -10.0};
+    target = -10.0;
+    expect = 1;
+
+    if(eval(elements, target, expect))
+        counter++;
+
+    std::cout << counter << " out of " << tests << " Tests passed!";
+
     return 0;
 }

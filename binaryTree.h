@@ -24,6 +24,8 @@ class binaryTree {
         //Destruktor
         ~binaryTree();
 
+        unsigned getCount();
+
         //Zaehler inkrementieren
         void incCounter();
         //neuen eintrag am baum anhaengen

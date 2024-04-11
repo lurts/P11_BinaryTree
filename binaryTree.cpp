@@ -26,6 +26,14 @@ binaryTree::~binaryTree() {
     delete right;
 }
 
+unsigned binaryTree::getCount() {
+    if (this != nullptr)
+        return counter;
+    else
+        return 0;
+
+}
+
 
 void binaryTree::incCounter() {
     counter++;
