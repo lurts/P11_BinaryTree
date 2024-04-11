@@ -35,4 +35,6 @@ class binaryTree {
         //Zeiger für ein gegebenes element suchen
         binaryTree* seek(float w);
 
+        void prettyPrint(std::string indent);
+
 };

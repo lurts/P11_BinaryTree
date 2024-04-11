@@ -5,6 +5,8 @@
 //Todo:
 //-
 
+#include <iostream>
+#include <queue>
 #include "binaryTree.h"
 
 binaryTree::binaryTree(float w) {
@@ -31,7 +33,6 @@ unsigned binaryTree::getCount() {
         return counter;
     else
         return 0;
-
 }
 
 
@@ -66,9 +67,18 @@ void binaryTree::insert(float w) {
     }
 }
 
-void binaryTree::durchlaufen() {
 
+
+void binaryTree::durchlaufen() {
+    if (left != nullptr)
+        left->durchlaufen();
+
+    std::cout << value << "\t" << counter << std::endl;
+
+    if (right != nullptr)
+        right->durchlaufen();
 }
+
 
 binaryTree* binaryTree::seek(float w) {
     binaryTree* current = this;
@@ -83,4 +93,18 @@ binaryTree* binaryTree::seek(float w) {
     }
 
     return nullptr;
+}
+
+void binaryTree::prettyPrint(std::string indent) {
+    std::cout << "W: " << value << std::endl;
+    std::cout << indent << "L: ";
+    if (left)
+        left->prettyPrint(indent+"   ");
+    else
+        std::cout << "-" << std::endl; // nullptr
+    std::cout << indent << "R: ";
+    if (right)
+        right->prettyPrint(indent+"   ");
+    else
+        std::cout << "-" << std::endl; // nullptr
 }
