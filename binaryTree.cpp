@@ -6,6 +6,7 @@
 //-
 
 #include <iostream>
+#include <fstream>
 #include <queue>
 #include "binaryTree.h"
 
@@ -93,6 +94,28 @@ binaryTree* binaryTree::seek(float w) {
     }
 
     return nullptr;
+}
+
+binaryTree* binaryTree::constructFromFile(std::string& path) {
+    std::ifstream file(path);
+    float number;
+
+    //Wenn Datei nicht geöffnet werden kann funktion verlassen
+    if (!file.is_open()) {
+        return nullptr;
+    }
+
+    file >> number;
+
+    binaryTree *bT;
+    bT = new binaryTree(number);
+
+
+    while (file >> number) {
+        bT->insert(number);
+    }
+
+    return bT;
 }
 
 void binaryTree::prettyPrint(std::string indent) {

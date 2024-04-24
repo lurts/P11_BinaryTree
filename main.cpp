@@ -6,6 +6,7 @@
 //-
 
 #include <iostream>
+#include <string>
 #include <vector>
 #include <iomanip>
 #include "binaryTree.h"
@@ -31,7 +32,7 @@ bool eval(std::vector<float> elements, float target, int expect) {
     binaryTree *foundElement = bT->seek(target);
     int foundValue = foundElement->getCount();
 
-    bool verdict = foundValue == expect;
+    bool verdict = (foundValue == expect);
 
     std::cout << "\nExpected Value: " << expect << " Function returned: " << foundValue << "\n";
 
@@ -135,6 +136,18 @@ int main() {
 
     if(eval(elements, target, expect))
         counter++;
+
+
+    //File Test
+    std::cout << "File Test " << tests << "\n";
+
+    std::string path = "Zahlen.txt";
+    binaryTree *bT;
+    bT = binaryTree::constructFromFile(path);
+
+    bT->durchlaufen();
+    delete bT;
+
 
     float percentage = (float(counter)/float(tests))*100.0;
 

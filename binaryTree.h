@@ -11,30 +11,33 @@
 #endif //P11_BINARYTREE_BINARYTREE_H
 
 class binaryTree {
-    private:
-        float value;
-        unsigned counter;
-        binaryTree* left;
-        binaryTree* right;
+private:
+    float value;
+    unsigned counter;
+    binaryTree* left;
+    binaryTree* right;
 
-    public:
-        //Konstruktor
-        binaryTree(float w);
-        binaryTree(float w, unsigned z);
-        //Destruktor
-        ~binaryTree();
+public:
+    //Konstruktor
+    binaryTree(float w);
+    binaryTree(float w, unsigned z);
+    //Destruktor
+    ~binaryTree();
 
-        unsigned getCount();
+    unsigned getCount();
 
-        //Zaehler inkrementieren
-        void incCounter();
-        //neuen eintrag am baum anhaengen
-        void insert(float w);
-        //baum in sortierter reihenfolge durchlaufen
-        void durchlaufen();
-        //Zeiger für ein gegebenes element suchen
-        binaryTree* seek(float w);
+    //Zaehler inkrementieren
+    void incCounter();
+    //neuen eintrag am baum anhaengen
+    void insert(float w);
+    //baum in sortierter reihenfolge durchlaufen
+    void durchlaufen();
+    //Zeiger für ein gegebenes element suchen
+    binaryTree* seek(float w);
 
-        void prettyPrint(std::string indent);
+    //construct a Tree from a file
+    static binaryTree* constructFromFile(std::string& path);
+
+    void prettyPrint(std::string indent);
 
 };
