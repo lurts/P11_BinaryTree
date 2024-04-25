@@ -5,14 +5,17 @@
 //Todo:
 //-
 
+#include <iostream>
+#include <fstream>
+#include <queue>
 #include "binaryTree.h"
 
-binaryTree::binaryTree(float w) {
-    value = w;
-    counter = 1;
-    left = nullptr;
-    right = nullptr;
-}
+//binaryTree::binaryTree(float w) {
+//    value = w;
+//    counter = 1;
+//    left = nullptr;
+//    right = nullptr;
+//}
 
 binaryTree::binaryTree(float w, unsigned z) {
     value = w;
@@ -31,7 +34,6 @@ unsigned binaryTree::getCount() {
         return counter;
     else
         return 0;
-
 }
 
 
@@ -66,9 +68,18 @@ void binaryTree::insert(float w) {
     }
 }
 
-void binaryTree::durchlaufen() {
 
+
+void binaryTree::durchlaufen() {
+    if (left != nullptr)
+        left->durchlaufen();
+
+    std::cout << value << "\t" << counter << std::endl;
+
+    if (right != nullptr)
+        right->durchlaufen();
 }
+
 
 binaryTree* binaryTree::seek(float w) {
     binaryTree* current = this;
@@ -83,4 +94,40 @@ binaryTree* binaryTree::seek(float w) {
     }
 
     return nullptr;
+}
+
+binaryTree* binaryTree::constructFromFile(std::string& path) {
+    std::ifstream file(path);
+    float number;
+
+    //Wenn Datei nicht geöffnet werden kann funktion verlassen
+    if (!file.is_open()) {
+        return nullptr;
+    }
+
+    file >> number;
+
+    binaryTree *bT;
+    bT = new binaryTree(number);
+
+
+    while (file >> number) {
+        bT->insert(number);
+    }
+
+    return bT;
+}
+
+void binaryTree::prettyPrint(std::string indent) {
+    std::cout << "W: " << value << std::endl;
+    std::cout << indent << "L: ";
+    if (left)
+        left->prettyPrint(indent+"   ");
+    else
+        std::cout << "-" << std::endl; // nullptr
+    std::cout << indent << "R: ";
+    if (right)
+        right->prettyPrint(indent+"   ");
+    else
+        std::cout << "-" << std::endl; // nullptr
 }

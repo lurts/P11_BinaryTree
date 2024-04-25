@@ -4,5 +4,4 @@ project(P11_BinaryTree)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(P11_BinaryTree main.cpp
-        binaryTree.cpp
         binaryTree.h)
